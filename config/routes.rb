@@ -6,7 +6,17 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
 
-  get '/calendar', to: "events#index"
+  get '/calendar', to: "posts#index"
+
+
+
+  get '/calendar/events', to: "events#index" , as: :events
+  post '/calendar/events', to: "events#create", as: :event_path
+  get '/calendar/events/new', to: "events#new", as: :new_event
+  get '/calendar/events/:id', to: "events#show", as: :event
+  patch '/calendar/events/:id', to: "events#update"
+  delete '/calendar/events/:id', to: "events#destroy", as: :delete_event
+  get '/calendar/events/:id/edit', to: 'events#edit', as: :edit_event
 
 
 

@@ -1,0 +1,46 @@
+<%= form_with model: @event, class:'grid grid-cols-1 gap-y-6' do |f|%>
+    <% if @event.errors.any? %>
+        <ul>
+        <%@event.errors.each do |error| %>
+            <li class='text-sm text-fuchsia-700'><%=error.full_message %></li>
+        <% end %>
+        </ul>
+    <% end %>
+    <div>
+        <%= f.label :time_from, class:"font-semibold text-blue-600"%>
+        <%= f.time_field  :time_from, class: 'mt-1 w-full border-0 ring-2 px-3 py-1.5 ring-indigo-600 rounded-md' %>
+    </div>
+    <div>
+        <%= f.label :time_to, class:"font-semibold text-blue-600"%>
+        <%= f.time_field  :time_to, class: 'mt-1 w-full border-0 ring-2 px-3 py-1.5 ring-indigo-600 rounded-md'%>
+    </div>
+    <div>
+        <%= f.label :date_from, class:"font-semibold text-blue-600"%>
+        <%= f.date_field   :date_from, class: 'mt-1 w-full border-0 ring-2 px-3 py-1.5 ring-indigo-600 rounded-md' %>
+    </div>
+    <div>
+        <%= f.label :date_to, class:"font-semibold text-blue-600"%>
+        <%= f.date_field   :date_to, class: 'mt-1 w-full border-0 ring-2 px-3 py-1.5 ring-indigo-600 rounded-md'%>
+    </div>
+    <div>
+        <%= f.label :name, class:"font-semibold text-blue-600"%>
+        <%= f.text_field :name, class: 'mt-1 w-full border-0 ring-2 px-3 py-1.5 ring-indigo-600 rounded-md' %>
+    </div>
+    <div>
+        <%= f.label :body, class:"font-semibold text-blue-600"%>
+        <%= f.text_area :body, class: 'mt-1 w-full border-0 ring-2 px-3 py-1.5 ring-indigo-600 rounded-md'%>
+    </div>
+
+    <div class='flex'>
+
+     <%@groups.each do |group|%>
+             <%= f.label  group.group.to_s, class:"font-semibold text-blue-600"%>
+             <%= f.radio_button :group, group.group.to_s,  class: 'mt-1 w-full border ring-2 px-3 py-1.5 ring-indigo-600 rounded-md'%>
+     <%end%>
+    </div>
+
+
+    <div class=' flex justify-end'>
+     <%= f.submit  class:'bg-indigo-600 hover:bg-indigo-800 text-white rounded-lg px-4 py-2'%>
+    <div>
+<%end%>
