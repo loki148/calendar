@@ -1,2 +1,2 @@
-web: rails server
+web: rails server -p 8000
 css: rails tailwindcss:watch

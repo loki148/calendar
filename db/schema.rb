@@ -26,9 +26,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_184716) do
   create_table "groups", force: :cascade do |t|
     t.text "group"
     t.text "color"
-    t.integer "intensity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,0 +1,21 @@
+<%= form_with model: @group, class:'grid grid-col-1 gap-y-6' do |f|%>
+    <% if @group.errors.any? %>
+        <ul>
+        <%@group.errors.each do |error| %>
+            <li class='text-sm text-fuchsia-700'><%=error.full_message%></li>
+        <% end %>
+        </ul>
+    <% end %>
+    <div>
+        <%= f.label :group, class:"font-semibold text-blue-600"%>
+        <%= f.text_field :group, class:'mt-1 w-full border-0 ring-2 px-3 py-1.5 ring-indigo-600 rounded-md'%>
+    </div>
+    <div>
+        <%= f.label :color, class:"font-semibold text-blue-600"%>
+        <%= f.color_field  :color%>
+    </div>
+
+    <div class='flex justify-end'>
+     <%= f.submit class:'bg-indigo-600 hover:bg-indigo-800 text-white rounded-lg px-4 py-2 '%>
+    </div>
+<%end%>
