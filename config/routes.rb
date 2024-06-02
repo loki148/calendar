@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
 
-  get '/calendar', to: "posts#index"
-
-
-
+  
+  
+  
   get '/calendar/events', to: "events#index" , as: :events
   post '/calendar/events', to: "events#create", as: :event_path
   get '/calendar/events/new', to: "events#new", as: :new_event
@@ -28,6 +27,16 @@ Rails.application.routes.draw do
   patch '/calendar/groups/:id', to: "groups#update"
   delete '/calendar/groups/:id', to: "groups#destroy", as: :delete_group
   get '/calendar/groups/:id/edit', to: 'groups#edit', as: :edit_group
+  
+  
+  
+  get '/calendar', to: "posts#index"
+  get '/calendar/day/:id', to: "posts#show"
+  get '/calendar/:id', to: "posts#index" , as: :calendar_roll
+
+
+
+
 
   # Defines the root path route ("/")
   root "posts#home"

@@ -40,17 +40,7 @@ class EventsController < ApplicationController
     end
 
     def update
-        puts '----------------------------------------------'
-        p event_params[:date_to]
-        p event_params[:date_from]
-
-        if event_params[:date_to] == ""
-            puts 'trueeeeeeeeeeeeeeeeeeeeeeeeee'
-            p event_params[:date_from]
-            event_params[:date_to] = event_params[:date_from]
-        end
-
-
+        
         if @event.update(event_params)
             redirect_to events_url
         else
