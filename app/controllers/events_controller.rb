@@ -19,30 +19,25 @@ class EventsController < ApplicationController
     end
 
     def create
-        puts '----------------------------------------------'
-        p event_params[:date_to]
-        p event_params[:date_from]
-
-        if event_params[:date_to] == ''
-            event_params[:date_to] = event_params[:date_from]
-        end
-
+        
         @event = Event.new(event_params)
-
+        
         if @event.save
-            redirect_to events_url
+            redirect_to calendar_roll_path((event_params[:date_from][5..6].to_i-Date.today.month))
         else
             render 'new', status: :unprocessable_entity
         end
     end
-
+    
     def edit
     end
-
+    
     def update
         
         if @event.update(event_params)
-            redirect_to events_url
+            puts '----------------------------------------------'
+            p event_params[:date_from][5..6].to_i-Date.today.month
+            redirect_to calendar_roll_path((event_params[:date_from][5..6].to_i-Date.today.month))
         else
             render 'edit', status: :unprocessable_entity
         end
@@ -50,7 +45,7 @@ class EventsController < ApplicationController
 
     def destroy
         @event.delete
-        redirect_to events_url
+        redirect_to calendar_url
     end
 
 

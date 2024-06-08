@@ -1,19 +1,14 @@
 <% a = Group.where(group: "#{@event.group}")%>
 <% a = a[0]%>
-<body style="background-color: <%= a.color%>">
 <%=link_to 'back to Calendar', calendar_path, class: 'px-3 py-1.5 border hover:bg-indigo-400 text-indigo-500 border-indigo-500 rounded-lg shadow-lg '%>
 <div class='flex justify-center'>
-    <div class='flex-col'>
-        <h1><%= @event.name%></h1>
-        <h1><%= @event.time_from.to_s[11..15]%></h1>
-        <h1><%= @event.time_to.to_s[11..15]%></h1>
-        <h1><%= @event.date_from%></h1>
-        <h1><%= @event.date_to%></h1>
-        <h1><%= @event.body%></h1>
-        <h1><%= @event.group%></h1>
-    </div> 
-</div>
-<div class='flex justify-center'>
-    <%=link_to 'Edit', edit_event_path(@event.id), class: 'px-3 py-1.5 border hover:bg-indigo-400 text-indigo-500 border-indigo-500 rounded-lg shadow-lg '%>
-    <%=button_to 'Delete', @event, method: :delete, class: 'ml-1 px-3 py-1.5 bg-pink-100 hover:bg-pink-300 opacity-60  hover:shadow-xl text-rose-600 rounded-lg shadow-lg'%>
+    <section style="background-color: <%= a.color%>" class='flex-col p-4 my-6 rounded-xl border border-sky-400 shadow'>
+            <h1><%= @event.name%></h1>
+            <h1><%= @event.time_from.to_s[11..15]%> <%= @event.date_from.strftime('%m/%d/%Y')%></h1>
+            <h1><%= @event.time_to.to_s[11..15]%> <%= @event.date_to.strftime('%m/%d/%Y') unless @event.date_to == nil %></h1>
+            <h1><%= @event.group%></h1>
+            <div class='flex mt-2 justify-center'>
+                <%=link_to 'Edit', edit_event_path(@event.id), class: 'px-3 py-1.5 border hover:bg-indigo-400 text-indigo-500 border-indigo-500 rounded-lg shadow-lg '%>
+                <%=button_to 'Delete', @event, method: :delete, class: 'ml-1 px-3 py-1.5 bg-pink-100 hover:bg-pink-300 opacity-60  hover:shadow-xl text-rose-600 rounded-lg shadow-lg'%>
+    </section>
 </div>

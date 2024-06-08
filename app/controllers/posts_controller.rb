@@ -4,6 +4,7 @@ class PostsController < ApplicationController
         
         api = WeatherApi.new()
         @weather = api.weather_by_city('zilina')
+        @month_view= Dayer.calendar(0)
         
 
 
@@ -13,7 +14,7 @@ class PostsController < ApplicationController
         @id = params[:id].to_i
         @month_view= Dayer.calendar(params[:id].to_i)
     end
-
+    
     def show
 
     end
