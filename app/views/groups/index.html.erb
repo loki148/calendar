@@ -7,7 +7,7 @@
       <% @groups.each do |group| %>
         <div class='event flex-col justify-between shadow-md p-4 border border-indigo-400 transition duration-300 hover:shadow-lg rounded-2xl' style="background-color: <%= group.color %>">
           <div class='flex justify-center'>
-          <h2 class='text-lg font-medium'><%=link_to 'Edit', edit_group_path(group)%></h2>
+          <h2 class='text-lg font-medium'><%=link_to group.group, edit_group_path(group)%></h2>
           </div>
           <div class='p-4 flex-col'>
           <h1><%= group.color%></h1>
