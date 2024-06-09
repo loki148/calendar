@@ -45,24 +45,24 @@
         <% @month_view[Date.today].each do |event| %>
           <% a = Group.find_by(group: event.group) %>
           <% col = @month_view[Date.today].find_index(event)%>
-          <% thickness = 100/@month_view[Date.today].count()%>
+          <% thickness = 96/@month_view[Date.today].count()%>
           <% start_time = (event.time_from.hour*60 + event.time_from.min)/60.0%>
           <% end_time = (event.time_to.hour*60 + event.time_to.min)/60.0%>
           <% if event.starts_today? && event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%= 2 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%= 4 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
 
           <% elsif event.starts_today? && !event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%=2 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (24 - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%=4 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (24 - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
           <% elsif !event.starts_today? && event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=2 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=4 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
           <% elsif !event.starts_today? && !event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=2 + (col) * 25 %>%; width: <%=thickness%>%; height: <%= (24)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=4 + (col) * 25 %>%; width: <%=thickness%>%; height: <%= (24)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
           <% end %>
