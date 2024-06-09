@@ -22,8 +22,12 @@ class EventsController < ApplicationController
         
         @event = Event.new(event_params)
         
+        p '_____________________________'
+        p '_____________________________'
+        puts event_params[:date_from].class
         if @event.save
-            redirect_to calendar_roll_path((event_params[:date_from][5..6].to_i-Date.today.month))
+            event_start_date = Date.strptime(event_params[:date_from])
+            redirect_to calendar_roll_path((12 * (event_start_date.year - Date.today.year) + event_start_date.month - Date.today.month))
         else
             render 'new', status: :unprocessable_entity
         end
@@ -35,9 +39,8 @@ class EventsController < ApplicationController
     def update
         
         if @event.update(event_params)
-            puts '----------------------------------------------'
-            p event_params[:date_from][5..6].to_i-Date.today.month
-            redirect_to calendar_roll_path((event_params[:date_from][5..6].to_i-Date.today.month))
+            event_start_date = Date.strptime(event_params[:date_from])
+            redirect_to calendar_roll_path((12 * (event_start_date.year - Date.today.year) + event_start_date.month - Date.today.month))
         else
             render 'edit', status: :unprocessable_entity
         end

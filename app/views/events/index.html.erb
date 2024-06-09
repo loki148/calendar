@@ -1,9 +1,9 @@
 <div class='flex-col '>
   <div>
-   <%=link_to 'back to Calendar', calendar_path, class: 'px-3 py-1.5 border hover:bg-indigo-400 text-indigo-500 border-indigo-500 rounded-lg shadow-lg '%>
+   <%=link_to '< back to Calendar', calendar_path, class: 'px-3 py-1.5 hover:drop-shadow-lg text-gray-500 drop-shadow' %>
     <div class='flex justify-end'>
      <%=link_to 'New Event', new_event_path, class: 'px-3 py-1.5 border hover:bg-indigo-400 text-indigo-500 border-indigo-500 rounded-lg shadow-lg '%>
-     <%=link_to 'Edit Groups', groups_path, class: 'px-3 py-1.5 border hover:bg-indigo-400 text-indigo-500 border-indigo-500 rounded-lg shadow-lg '%>
+     <%=link_to 'Edit Groups', groups_path, class: 'px-3 py-1.5 border hover:bg-amber-400 text-orange-500 border-amber-500 rounded-lg shadow-lg ml-2'%>
     </div>
   </div>
   <section class='mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-x-6 gap-y-6'>
@@ -20,10 +20,15 @@
           <h1><%= event.body%></h1>
           </div>
           <div class='flex justify-center items-center'>
-              <%=link_to 'Edit', edit_event_path(event.id), class: 'px-3 py-1.5 border hover:bg-indigo-400 text-indigo-500 border-indigo-500 rounded-lg shadow-lg '%>
+              <%=link_to 'Edit', edit_event_path(event.id), class: 'px-3 py-1.5 border hover:bg-yellow-400 text-amber-500 border-yellow-500 rounded-lg shadow-lg '%>
               <%=button_to 'Delete', event, method: :delete, class: 'ml-1 px-3 py-1.5 bg-pink-100 hover:bg-pink-300 opacity-60  hover:shadow-xl text-rose-600 rounded-lg shadow-lg'%>
           </div>
         </div>
       <% end %>
   </section> 
 </div>
+
+
+
+<footer class="w-full h-10 relative bottom-0 flex justify-center mt-2">
+</footer> 
