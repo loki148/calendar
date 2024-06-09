@@ -31,7 +31,7 @@
     <% last_calendar_day = last_day_of_month.end_of_week(:monday) %>
 
     <% (first_calendar_day..last_calendar_day).each do |date| %>
-      <div class='flex-col p-1 border border-green-400 rounded-lg hover:border-green-500 transition duration-100 hover:shadow <%= "text-gray-400" if date.month != first_day_of_month.month %> <%= "bg-gradient-to-r from-green-300 via-emeral-200 to-teal-200" if date == Date.today %>'>
+      <div class='flex-col p-1 border border-green-400 rounded-lg hover:border-green-500 transition duration-100 hover:shadow <%= "text-gray-400" if date.month != first_day_of_month.month %> <%= "bg-gradient-to-r from-green-300 via-emerald-300 to-teal-300" if date == Date.today %>'>
         <%= date.day %>
         <% if @month_view[date] %>
           <% @month_view[date].each do |event| %>

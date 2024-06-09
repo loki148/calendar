@@ -23,10 +23,15 @@
       </div>
     </div>
 
-    <div class='w-2/3 h-[680px] border rounded-lg p-4 bg-gradient-to-r from-green-300 via-emerald-300 to-teal-300'>
+    <div class='w-2/3 h-[680px] border rounded-lg p-4 bg-gradient-to-r from-green-300 via-emerald-300 to-teal-300 overflow-hidden'>
       <h1 class='text-3xl'>Today's events:</h1>
+      <% if @month_view[Date.today].empty? %>
+        <div class='flex justify-center mt-4'>
+          <h1 class='text-gray-400'>No events for today</h1>
+        </div>
+      <% end %>
         <hr>
-      <div class="relative h-[600px] mt-2 ">
+      <div class="relative h-[600px] mt-2 overflow-hidden">
         <% 24.times do |hour| %>
           <div class="absolute w-full border-b border-gray-100 text-left  pr-2 text-xs" style="top: <%= hour * 25 %>px;">
             <%= "#{hour}:00" %>
@@ -44,31 +49,27 @@
           <% start_time = (event.time_from.hour*60 + event.time_from.min)/60.0%>
           <% end_time = (event.time_to.hour*60 + event.time_to.min)/60.0%>
           <% if event.starts_today? && event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%= 5 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%= 2 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
 
           <% elsif event.starts_today? && !event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%=5 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (24 - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: <%= start_time * 25 -8%>px; left: <%=2 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (24 - start_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
           <% elsif !event.starts_today? && event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=5 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=2 + (col) * thickness %>%; width: <%=thickness%>%; height: <%= (end_time)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
           <% elsif !event.starts_today? && !event.ends_today?%>
-            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=5 + (col) * 25 %>%; width: <%=thickness%>%; height: <%= (24)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
+            <a href="/calendar/events/<%= event.id %>" style="background-color: <%= a.color %>; top: -8px; left: <%=2 + (col) * 25 %>%; width: <%=thickness%>%; height: <%= (24)*25%>px;" class="absolute p-2 rounded-lg text-white text-sm overflow-hidden">
                <h1 class='flex justify-center text-black'><%=event.name%></h1>
             </a>
           <% end %>
         <% end %>
 
 
-        <% if @month_view[Date.today].empty? %>
-          <div class='flex justify-center mt-4'>
-            <h1 class='text-gray-400'>No events for today</h1>
-          </div>
-        <% end %>
+        
       </div>
     </div>
   </div>
